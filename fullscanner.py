@@ -127,4 +127,4 @@ for sex in ['f', 'm']:
 			y,x = divmod(location, icon_sheet_width)
 			icon_surface = pygame.Surface((icon_width,icon_height))
 			icon_surface.blit(icon_sheet, (x*-icon_width, y*-icon_width))
-			pygame.image.save(icon_surface, "C:\\Users\\jon\\Desktop\\iconimages\\"+sex+"\\"+str(icon[0])+".bmp")
+			pygame.image.save(icon_surface, sex+"\\"+str(icon[0])+".bmp")
