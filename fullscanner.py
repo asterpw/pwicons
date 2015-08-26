@@ -8,7 +8,7 @@ import time
 
 configs = []
 f = open("C:\Games\PWI_en\element\data\elements.data", 'rb')
-cfg = open("C:\Games\pwTools\pwtools-svn-bin\sELedit\configs\PW_1.5.2_v128.cfg", 'r')
+cfg = open("C:\Games\pwTools\pwtools-svn-bin\sELedit\configs\PW_1.5.2_v133.cfg", 'r')
 
 num_group = int(cfg.readline())
 raw_tree = int(cfg.readline())
@@ -65,7 +65,6 @@ def scanTalk(f, talk_count):
 	return ('', dialogs)
 		
 
-#avatarFields = avatarConfig.split(';')
 auto_amounts = [0x14, 0x37]
 cur_auto = 0
 entries = {}
@@ -126,5 +125,5 @@ for sex in ['f', 'm']:
 		if location > -1:
 			y,x = divmod(location, icon_sheet_width)
 			icon_surface = pygame.Surface((icon_width,icon_height))
-			icon_surface.blit(icon_sheet, (x*-icon_width, y*-icon_width))
+			icon_surface.blit(icon_sheet, (x*-icon_width, y*-icon_height))
 			pygame.image.save(icon_surface, sex+"\\"+str(icon[0])+".bmp")
