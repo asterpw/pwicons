@@ -7,8 +7,8 @@ import sys
 import time
 
 configs = []
-f = open("C:\Games\PWI_en\element\data\elements.data", 'rb')
-cfg = open("C:\Games\pwTools\pwtools-svn-bin\sELedit\configs\PW_1.5.2_v133.cfg", 'r')
+f = open("C:\Games\Downloads\ec_patch_2038-2041.cup.decoded\element\data\elements.data", 'rb')
+cfg = open("C:\Games\pwTools\pwtools-svn-bin\sELedit\configs\PW_1.5.5_v156.cfg", 'r')
 
 num_group = int(cfg.readline())
 raw_tree = int(cfg.readline())
@@ -65,13 +65,18 @@ def scanTalk(f, talk_count):
 	return ('', dialogs)
 		
 
-auto_amounts = [0x14, 0x37]
 cur_auto = 0
 entries = {}
 for config in configs:
 	if config[1] == "AUTO":
-		f.read(auto_amounts[cur_auto])
-		cur_auto += 1
+			while True:
+				count = struct.unpack('<i', f.read(4))[0]
+				idx = struct.unpack('<i', f.read(4))[0]
+				if (count & 0xFFFF0000) or (idx & 0xFFFF0000):
+					f.seek(-7, 1)
+				else:
+					f.seek(-8, 1)
+					break
 	elementCount = struct.unpack('<i', f.read(4))[0]
 	print "Scanning", config[0], elementCount
 	elements = []
@@ -102,12 +107,12 @@ for config in entries:
 output.write('\n'.join([str(x[0])+','+x[1] for x in icons]))
 
 import pygame
-
+START_FROM = 51023
 for sex in ['f', 'm']:
-	icon_sheet = pygame.image.load('C:\Games\PWI_en\element\surfaces.pck.files\surfaces\iconset\iconlist_ivtr'+sex+'.bmp')
+	icon_sheet = pygame.image.load('C:\Games\Downloads\ec_patch_2038-2041.cup.decoded\element\surfaces\iconset\iconlist_ivtr'+sex+'.bmp')
 	current_icon_index = 0
 	icon_map = {}
-	icon_sheet_index = open('C:\Games\PWI_en\element\surfaces.pck.files\surfaces\iconset\iconlist_ivtr'+sex+'.txt')
+	icon_sheet_index = open('C:\Games\Downloads\ec_patch_2038-2041.cup.decoded\element\surfaces\iconset\iconlist_ivtr'+sex+'.txt')
 	icon_height = int(icon_sheet_index.readline())
 	icon_width = int(icon_sheet_index.readline())
 	icon_sheet_height = int(icon_sheet_index.readline())
@@ -119,6 +124,8 @@ for sex in ['f', 'm']:
 		line = icon_sheet_index.readline()
 		
 	for icon in icons:
+		if icon[0] < START_FROM:
+			continue
 		if icon[1] not in icon_map:
 			continue
 		location = icon_map[icon[1]]
