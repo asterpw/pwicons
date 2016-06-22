@@ -7,8 +7,8 @@ import sys
 import time
 
 configs = []
-f = open("C:\Games\Downloads\ec_patch_2038-2041.cup.decoded\element\data\elements.data", 'rb')
-cfg = open("C:\Games\pwTools\pwtools-svn-bin\sELedit\configs\PW_1.5.5_v156.cfg", 'r')
+f = open("C:\Games\PWCN\element\data\elements.data", 'rb')
+cfg = open("C:\Games\pwTools\pwtools-svn-bin\sELedit\configs\PW_1.5.5_v167.cfg", 'r')
 
 num_group = int(cfg.readline())
 raw_tree = int(cfg.readline())
