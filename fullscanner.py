@@ -109,10 +109,10 @@ output.write('\n'.join([str(x[0])+','+x[1] for x in icons]))
 import pygame
 START_FROM = 51023
 for sex in ['f', 'm']:
-	icon_sheet = pygame.image.load('C:\Games\Downloads\ec_patch_2038-2041.cup.decoded\element\surfaces\iconset\iconlist_ivtr'+sex+'.bmp')
+	icon_sheet = pygame.image.load('C:\Games\Downloads\ec_patch_2137-2141.cup.decoded\element\surfaces\iconset\iconlist_ivtr'+sex+'.bmp')
 	current_icon_index = 0
 	icon_map = {}
-	icon_sheet_index = open('C:\Games\Downloads\ec_patch_2038-2041.cup.decoded\element\surfaces\iconset\iconlist_ivtr'+sex+'.txt')
+	icon_sheet_index = open('C:\Games\Downloads\ec_patch_2137-2141.cup.decoded\element\surfaces\iconset\iconlist_ivtr'+sex+'.txt')
 	icon_height = int(icon_sheet_index.readline())
 	icon_width = int(icon_sheet_index.readline())
 	icon_sheet_height = int(icon_sheet_index.readline())
